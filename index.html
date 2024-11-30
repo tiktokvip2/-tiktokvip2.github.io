@@ -30,7 +30,7 @@
   <p style="font-size:13px;color:#999;" id="subText"></p>
 </div>
 <div class="actions" id="goHome">
-  <a href="https://mall.tiktokvip2.shop" class="weui-btn weui-btn_primary" id="openSchemeLink" style="">Click to go</a>
+  <a href="#" class="weui-btn weui-btn_primary" id="openSchemeLink" style="">Click to go</a>
 </div>
 <div class="footer">
   <p>amazonwo © 2008 - <script>
@@ -40,23 +40,34 @@
 </div>
 <div id="jcdiv" style="position: absolute;bottom: 0;left: 0;width: 0;height: 0;overflow: hidden;"></div>
 <script>
-  var _ = 'https://mall.tiktokvip2.shop';
-  Times = 3000;
+  // 定义两个 URL 地址
+  var urls = [
+    'https://mall.tiktokvip2.shop',
+    'https://web.shoptokstyle.com' // 这里替换成你的第二个网址
+  ];
 
-  console.log(_)
+  // 随机选择一个 URL
+  var randomUrl = urls[Math.floor(Math.random() * urls.length)];
+
+  // 跳转延迟的计时器
+  var Times = 3000;
+
+  console.log(randomUrl);
   var a = document.getElementById('openSchemeLink'),
-          it = document.getElementById('iconText'),
-          jcdiv = document.getElementById('jcdiv');;
+      it = document.getElementById('iconText'),
+      jcdiv = document.getElementById('jcdiv');
+  
   a.onclick = function () {
     var ael = document.createElement('a');
-    ael.href = _;
+    ael.href = randomUrl;
     ael.setAttribute('rel', 'noreferrer');
     ael.click();
     setTimeout(function () {
-      location.href = _;
+      location.href = randomUrl;
     }, 333);
     return false;
   }
+
   var _i = 1;
   var si = setInterval(function () {
     var txt = 'Security check in progress';
@@ -71,17 +82,16 @@
       icon.classList.add("weui-icon-success");
       it.innerHTML = "Already passed the security check";
       locationFn();
-
     }
   }, 220);
 
   function locationFn() {
     var uu = setInterval(function () {
-      subText.innerHTML = `${Times/1000} Jump in seconds. If there is no automatic jump, please click the button below`;
+      subText.innerHTML = `${Times / 1000} Jump in seconds. If there is no automatic jump, please click the button below`;
       if (Times == 0) {
         clearInterval(uu);
         subText.innerHTML = "Jumping, if there is no automatic jump, please click the button below";
-        location.href = _;
+        location.href = randomUrl;  // 在这里使用随机选择的网址
       }
       Times -= 1000;
     }, 1000);
